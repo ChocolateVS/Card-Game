@@ -215,10 +215,16 @@ function columnClicked(clickedColumn) {
         alert("This card requires a card greater than it, and of the same suit to be removed");
     }
     if (column1.length > 0) {
+        var top1 = column1[column1.length - 1].Suit;
+        var top2 = column2[column2.length - 1].Suit;
+        var top3 = column3[column3.length - 1].Suit;
+        var top4 = column4[column4.length - 1].Suit;
+        
+        if (top1 != top2 && top1 != top3 && top1 != top4 && top2 != top3 && top2 != top4 && top3 != top4 && count == 0) {
+        alert("Oh No! It seems you are stuck :(, YOU LOSE");
+        }
         if (column1[1].Value == 14 && column2[1].Value == 14 && column3[1].Value == 14 && column4[1].Value == 14) {
         alert("Congratulations, OMG, WOW, no way you actually completed it!");
-        } else {
-            console.log("Nope");
         }
     }
 }
