@@ -72,9 +72,13 @@ button, p, h1, input, div {
 	margin:5px;
 	padding:0;
 	display:inline-block;
-    border:2px solid;
 }
 
 .all {
 	display:inline-block;
+}
+
+button {
+	background: none;
+	border: none;
 }

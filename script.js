@@ -1,6 +1,4 @@
-alert("Welcome to the game, yeah its not done yet!");
-alert("The aim is to end with all 4 aces on the bottom. You can remove a top card if there is a card of greater value, and of the same suit, on the top of another pile");
-alert("Don't mind the 0 cards on the bottom, they will be hidden later but currently using them to fix some bugs lol")
+alert("Welcome to the game!, The aim is to end with all 4 aces on the bottom. You can remove a top card if there is a card of greater value, and of the same suit, on the top of another pile");
 var cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 var cardValue = [14, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 var suits = ["diamonds", "hearts", "spades", "clubs"];
@@ -182,16 +180,24 @@ function columnClicked(clickedColumn) {
     }
     if (clicked.CardValue < column1top.CardValue && clicked.Suit == column1top.Suit || clicked.CardValue < column2top.CardValue && clicked.Suit == column2top.Suit || clicked.CardValue < column3top.CardValue && clicked.Suit == column3top.Suit || clicked.CardValue < column4top.CardValue && clicked.Suit == column4top.Suit) {
         if (clickedColumn == 1) {
+            var discarded = column1[column1.length - 1];
+            updateDiscard(discarded);
             column1.pop();
         }
         if (clickedColumn == 2) {
-             column2.pop();
+            var discarded = column2[column2.length - 1];
+            updateDiscard(discarded);
+            column2.pop();
         }
         if (clickedColumn == 3) {
-             column3.pop();
+            var discarded = column3[column3.length - 1];
+            updateDiscard(discarded);
+            column3.pop();
         }
         if (clickedColumn == 4) {
-             column4.pop();
+            var discarded = column4[column4.length - 1];
+            updateDiscard(discarded);
+            column4.pop();
         }
         renderDeck();
     }
@@ -250,4 +256,19 @@ function moveCard(startPile, endPile) {
         column4.push(tempCard);
     }
     renderDeck();
+}
+
+function updateDiscard(discarded) {
+    document.getElementById("discard").innerHTML = "";
+    
+    var card = document.createElement("div");
+    var value = document.createElement("div");
+    var suit = document.createElement("div");
+    card.className = "card";
+    value.className = "value";
+    suit.className = "suit " + discarded.Suit;
+    value.innerHTML = discarded.Value;
+    card.appendChild(value);
+    card.appendChild(suit);
+    document.getElementById("discard").appendChild(card);   
 }
