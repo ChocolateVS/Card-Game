@@ -11,6 +11,7 @@ var column2 = new Array();
 var column3 = new Array();
 var column4 = new Array();
 
+var count = 13;
 var topCard;
 var blankCard = {Value: "0", Suit: "none", CardValue: "0"};
 column1.push(blankCard);
@@ -134,7 +135,8 @@ generateDeck();
 shuffle();
 
 function moreCards() {
-    if (deck.length > 0) {
+    var remain = document.getElementById("rem");
+    if (count > 0) {
     var card1 = deck[0];
     var card2 = deck[1];
     var card3 = deck[2];
@@ -149,8 +151,11 @@ function moreCards() {
     column3.push(card3);
     column4.push(card4);
     renderDeck();
+    count--;
+    
+    remain.innerHTML = "Remaining: " + count;
     }
-    else {
+    if (count == 0) {
         alert("The deck is empty");
         document.getElementById("btn").style.display = "none";
     }

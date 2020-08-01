@@ -10,6 +10,9 @@
 	color:white;
 }
 
+button, p, h1, input, div {
+    font-family: "Roboto", monospace;
+}
 .card
 {
 	padding: 10px;
