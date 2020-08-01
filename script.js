@@ -150,6 +150,10 @@ function moreCards() {
     column4.push(card4);
     renderDeck();
     }
+    else {
+        alert("The deck is empty");
+        document.getElementById("btn").style.display = "none";
+    }
 }
 
 function columnClicked(clickedColumn) {
@@ -198,6 +202,13 @@ function columnClicked(clickedColumn) {
     
     else {
         alert("This card requires a card greater than it, and of the same suit to be removed");
+    }
+    if (column1.length > 0) {
+        if (column1[1].Value == 14 && column2[1].Value == 14 && column3[1].Value == 14 && column4[1].Value == 14) {
+        alert("Congratulations, OMG, WOW, no way you actually completed it!");
+        } else {
+            console.log("Nope");
+        }
     }
 }
 
