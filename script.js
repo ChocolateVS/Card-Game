@@ -1,3 +1,6 @@
+alert("Welcome to the game, yeah its not done yet!");
+alert("The aim is to end with all 4 aces on the bottom. You can remove a top card if there is a card of greater value, and of the same suit, on the top of another pile");
+alert("Don't mind the 0 cards on the bottom, they will be hidden later but currently using them to fix some bugs lol")
 var cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 var cardValue = [14, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 var suits = ["diamonds", "hearts", "spades", "clubs"];
@@ -8,6 +11,11 @@ var column2 = new Array();
 var column3 = new Array();
 var column4 = new Array();
 
+var blankCard = {Value: "0", Suit: "none", CardValue: "0"};
+column1.push(blankCard);
+column2.push(blankCard);
+column3.push(blankCard);
+column4.push(blankCard);
 function generateDeck()
 {
 	for(var i = 0; i < suits.length; i++)
@@ -125,6 +133,20 @@ generateDeck();
 shuffle();
 
 function moreCards() {
+    /*if (column1.length != 0 && column2.length != 0 && column3.length != 0 && column4.length != 0) {
+        if (column1[0].Value == "0") {
+            column1.shift();
+        }
+        if (column2[0].Value == "0") {
+            column2.shift();
+        }
+        if (column3[0].Value == "0") {
+            column3.shift();
+        }
+        if (column4[0].Value == "0") {
+            column4.shift();
+        }
+    }*/
     var card1 = deck[0];
     var card2 = deck[1];
     var card3 = deck[2];
@@ -147,7 +169,6 @@ function columnClicked(clickedColumn) {
     var column3top = column3[column3.length - 1]; 
     var column4top = column4[column4.length - 1]; 
     
-    if (column1.length == 0)
     var topCards = [column1top, column2top, column3top, column4top];
     if (clickedColumn == 1) {
          var clicked = column1top;
@@ -161,8 +182,28 @@ function columnClicked(clickedColumn) {
     if (clickedColumn == 4) {
          var clicked = column4top;
     }
-    console.log(clicked.CardValue, column1top.CardValue, clicked.Suit, column1top.Suit, clicked.CardValue, column2top.CardValue, clicked.Suit, column2top.Suit, clicked.CardValue, column3top.CardValue, clicked.Suit, column3top.Suit, clicked.CardValue, column4top.CardValue, clicked.Suit, column4top.Suit);
-
+    /*console.log(clicked.CardValue, column1top.CardValue, clicked.Suit, column1top.Suit, clicked.CardValue, column2top.CardValue, clicked.Suit, column2top.Suit, clicked.CardValue, column3top.CardValue, clicked.Suit, column3top.Suit, clicked.CardValue, column4top.CardValue, clicked.Suit, column4top.Suit);*/
+    
+    /*if (column1.length == 0) {
+        var card = {Value: "0", Suit: "Blank", CardValue: 0};
+        column1.push(card);
+        console.log("cardPushed1");
+    }
+    if (column2.length == 0) {
+        var card = {Value: "0", Suit: "Blank", CardValue: 0};
+        column2.push(card);
+        console.log("cardPushed2");
+    }
+    if (column3.length == 0) {
+        var card = {Value: "0", Suit: "Blank", CardValue: 0};
+        column3.push(card);
+        console.log("cardPushed3");
+    }
+    if (column4.length == 0) {
+        var card = {Value: "0", Suit: "Blank", CardValue: 0};
+        column4.push(card);
+        console.log("cardPushed4");
+    }*/
     if (clicked.CardValue < column1top.CardValue && clicked.Suit == column1top.Suit || clicked.CardValue < column2top.CardValue && clicked.Suit == column2top.Suit || clicked.CardValue < column3top.CardValue && clicked.Suit == column3top.Suit || clicked.CardValue < column4top.CardValue && clicked.Suit == column4top.Suit) {
         if (clickedColumn == 1) {
             column1.pop();
@@ -178,7 +219,7 @@ function columnClicked(clickedColumn) {
         }
         renderDeck();
     }
-    else if (column1.length == 0 || column2.length == 0 || column3.length == 0 || column2.length == 0) {
+    else if (column1.length == 1 && column1[0].Value == 0 || column2.length == 0 && column1[0].Value == 0 || column3.length == 0  && column1[0].Value == 0 || column2.length == 0  && column1[0].Value == 0) {
         alert("Can be moved to empty pile");
     }
     else {

@@ -60,6 +60,11 @@
 	background-position-y: 100px;
 }
 
+.card .none
+{
+	visibility: hidden;
+}
+
 .column {
 	margin:5px;
 	padding:0;
