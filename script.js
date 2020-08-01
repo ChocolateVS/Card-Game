@@ -134,20 +134,7 @@ generateDeck();
 shuffle();
 
 function moreCards() {
-    /*if (column1.length != 0 && column2.length != 0 && column3.length != 0 && column4.length != 0) {
-        if (column1[0].Value == "0") {
-            column1.shift();
-        }
-        if (column2[0].Value == "0") {
-            column2.shift();
-        }
-        if (column3[0].Value == "0") {
-            column3.shift();
-        }
-        if (column4[0].Value == "0") {
-            column4.shift();
-        }
-    }*/
+    if (deck.length > 0) {
     var card1 = deck[0];
     var card2 = deck[1];
     var card3 = deck[2];
@@ -162,6 +149,7 @@ function moreCards() {
     column3.push(card3);
     column4.push(card4);
     renderDeck();
+    }
 }
 
 function columnClicked(clickedColumn) {
@@ -183,28 +171,6 @@ function columnClicked(clickedColumn) {
     if (clickedColumn == 4) {
          var clicked = column4top;
     }
-    /*console.log(clicked.CardValue, column1top.CardValue, clicked.Suit, column1top.Suit, clicked.CardValue, column2top.CardValue, clicked.Suit, column2top.Suit, clicked.CardValue, column3top.CardValue, clicked.Suit, column3top.Suit, clicked.CardValue, column4top.CardValue, clicked.Suit, column4top.Suit);*/
-    
-    /*if (column1.length == 0) {
-        var card = {Value: "0", Suit: "Blank", CardValue: 0};
-        column1.push(card);
-        console.log("cardPushed1");
-    }
-    if (column2.length == 0) {
-        var card = {Value: "0", Suit: "Blank", CardValue: 0};
-        column2.push(card);
-        console.log("cardPushed2");
-    }
-    if (column3.length == 0) {
-        var card = {Value: "0", Suit: "Blank", CardValue: 0};
-        column3.push(card);
-        console.log("cardPushed3");
-    }
-    if (column4.length == 0) {
-        var card = {Value: "0", Suit: "Blank", CardValue: 0};
-        column4.push(card);
-        console.log("cardPushed4");
-    }*/
     if (clicked.CardValue < column1top.CardValue && clicked.Suit == column1top.Suit || clicked.CardValue < column2top.CardValue && clicked.Suit == column2top.Suit || clicked.CardValue < column3top.CardValue && clicked.Suit == column3top.Suit || clicked.CardValue < column4top.CardValue && clicked.Suit == column4top.Suit) {
         if (clickedColumn == 1) {
             column1.pop();
