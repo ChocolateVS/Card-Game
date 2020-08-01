@@ -66,7 +66,7 @@ function renderDeck()
     drawColumn4.className = "column";
     drawColumn4.setAttribute("onClick", "columnClicked(4)");
 
-    for (i = 0; i < column1.length; i++) {
+    for (i = 1; i < column1.length; i++) {
         var br = document.createElement("br");
         var card = document.createElement("div");
         var value = document.createElement("div");
@@ -80,7 +80,7 @@ function renderDeck()
         drawColumn1.appendChild(card);
         drawColumn1.appendChild(br);
     }
-    for (i = 0; i < column2.length; i++) {
+    for (i = 1; i < column2.length; i++) {
         var br = document.createElement("br");
         var card = document.createElement("div");
         var value = document.createElement("div");
@@ -94,7 +94,7 @@ function renderDeck()
         drawColumn2.appendChild(card);
         drawColumn2.appendChild(br);
     }
-    for (i = 0; i < column3.length; i++) {
+    for (i = 1; i < column3.length; i++) {
         var br = document.createElement("br");
         var card = document.createElement("div");
         var value = document.createElement("div");
@@ -108,7 +108,7 @@ function renderDeck()
         drawColumn3.appendChild(card);
         drawColumn3.appendChild(br);
     }
-    for (i = 0; i < column4.length; i++) {
+    for (i = 1; i < column4.length; i++) {
         var br = document.createElement("br");
         var card = document.createElement("div");
         var value = document.createElement("div");
