@@ -11,6 +11,7 @@ var column2 = new Array();
 var column3 = new Array();
 var column4 = new Array();
 
+var topCard;
 var blankCard = {Value: "0", Suit: "none", CardValue: "0"};
 column1.push(blankCard);
 column2.push(blankCard);
@@ -168,8 +169,8 @@ function columnClicked(clickedColumn) {
     var column2top = column2[column2.length - 1]; 
     var column3top = column3[column3.length - 1]; 
     var column4top = column4[column4.length - 1]; 
-    
-    var topCards = [column1top, column2top, column3top, column4top];
+    var emptyColumn = 0;
+    topCards = [column1top, column2top, column3top, column4top];
     if (clickedColumn == 1) {
          var clicked = column1top;
     }
@@ -219,10 +220,52 @@ function columnClicked(clickedColumn) {
         }
         renderDeck();
     }
-    else if (column1.length == 1 && column1[0].Value == 0 || column2.length == 0 && column1[0].Value == 0 || column3.length == 0  && column1[0].Value == 0 || column2.length == 0  && column1[0].Value == 0) {
-        alert("Can be moved to empty pile");
+    else if (column1.length == 1 && column1[0].CardValue == 0) {
+        moveCard(clickedColumn, 1);
+    } else if(column2.length == 1 && column2[0].CardValue == 0) {
+        moveCard(clickedColumn, 2);
+    } else if(column3.length == 1  && column3[0].CardValue == 0) {
+        moveCard(clickedColumn, 3);
+    } else if(column4.length == 1  && column4[0].CardValue == 0) {
+        moveCard(clickedColumn, 4);
     }
+    
     else {
-        alert("This card requires a card greater than it of the same suit to be removed");
+        alert("This card requires a card greater than it, and of the same suit to be removed");
     }
+}
+
+function moveCard(startPile, endPile) {
+    var tempCard;// = topCard[startPile];
+    console.log(startPile, endPile);
+    if (startPile == 1) {
+        tempCard = column1[column1.length - 1];
+        column1.pop();
+    }
+    if (startPile == 2) {
+        tempCard = column2[column2.length - 1];
+        column2.pop();
+    }
+    if (startPile == 3) {
+        tempCard = column3[column3.length - 1];
+        column3.pop();
+    }
+    if (startPile == 4) {
+        tempCard = column4[column4.length - 1];
+        column4.pop();
+    }
+    console.log(tempCard);
+    if (endPile == 1) {
+        column1.push(tempCard);
+    }
+    if (endPile == 2) {
+        column2.push(tempCard);
+    }
+    if (endPile == 3) {
+        column3.push(tempCard);
+    }
+    if (endPile == 4) {
+        column4.push(tempCard);
+    }
+    renderDeck();
 }
