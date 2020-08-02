@@ -18,18 +18,25 @@ var discardArrD = new Array(12);
 var discardArrC = new Array(12);
 var discardArrS = new Array(12);
 
-for (i = 0; i < discardArrH.length; i++) {
-    discardArrH[i] = blankCard;
+var snd = new Audio("sound.wav"); 
+
+
+discardArrays();
+function discardArrays () {
+    for (i = 0; i < discardArrH.length; i++) {
+        discardArrH[i] = blankCard;
+    }
+    for (i = 0; i < discardArrD.length; i++) {
+        discardArrD[i] = blankCard;
+    }
+    for (i = 0; i < discardArrC.length; i++) {
+        discardArrC[i] = blankCard;
+    }
+    for (i = 0; i < discardArrS.length; i++) {
+        discardArrS[i] = blankCard;
+    }
 }
-for (i = 0; i < discardArrD.length; i++) {
-    discardArrD[i] = blankCard;
-}
-for (i = 0; i < discardArrC.length; i++) {
-    discardArrC[i] = blankCard;
-}
-for (i = 0; i < discardArrS.length; i++) {
-    discardArrS[i] = blankCard;
-}
+
 
 var discDiv = document.getElementById("disc");
 column1.push(blankCard);
@@ -157,6 +164,7 @@ shuffle();
 function moreCards() {
     var remain = document.getElementById("rem");
     if (count > 0) {
+    snd.play();
     var card1 = deck[0];
     var card2 = deck[1];
     var card3 = deck[2];
@@ -221,6 +229,7 @@ function columnClicked(clickedColumn) {
             updateDiscard(discarded);
             column4.pop();
         }
+        snd.play();
         moves++;
         document.getElementById("moves").innerHTML = "Moves: " + moves;
         renderDeck();
@@ -286,6 +295,7 @@ function moveCard(startPile, endPile) {
     if (endPile == 4) {
         column4.push(tempCard);
     }
+    snd.play();
     moves++;
     document.getElementById("moves").innerHTML = "Moves: " + moves;
     renderDeck();
@@ -394,6 +404,13 @@ function restart() {
     column3.push(blankCard);
     column4.push(blankCard);
     
+    discardArrH = new Array(12);
+    discardArrD = new Array(12);
+    discardArrC = new Array(12);
+    discardArrS = new Array(12);
+
+    discardArrays();
+
     document.getElementById("btn").style.display = "inline-block";
     generateDeck();
     shuffle();
