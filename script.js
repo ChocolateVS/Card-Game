@@ -13,6 +13,23 @@ var cardsDiscarded = 0;
 var count = 13;
 var topCard;
 var blankCard = {Value: "0", Suit: "none", CardValue: "0"};
+var discardArrH = new Array(12);
+var discardArrD = new Array(12);
+var discardArrC = new Array(12);
+var discardArrS = new Array(12);
+
+for (i = 0; i < discardArrH.length; i++) {
+    discardArrH[i] = blankCard;
+}
+for (i = 0; i < discardArrD.length; i++) {
+    discardArrD[i] = blankCard;
+}
+for (i = 0; i < discardArrC.length; i++) {
+    discardArrC[i] = blankCard;
+}
+for (i = 0; i < discardArrS.length; i++) {
+    discardArrS[i] = blankCard;
+}
 
 var discDiv = document.getElementById("disc");
 column1.push(blankCard);
@@ -274,7 +291,7 @@ function moveCard(startPile, endPile) {
     renderDeck();
 }
 
-function updateDiscard(discarded) {
+function updateDiscard2(discarded) {
     cardsDiscarded++;
     //document.getElementById("discard").innerHTML = "";
     var br = document.createElement("br");
@@ -293,6 +310,67 @@ function updateDiscard(discarded) {
     
 }
 
+function updateDiscard(discarded) {
+    console.log("Discarded: ", discarded)
+    document.getElementById("discard").innerHTML = "";
+    cardsDiscarded++;
+    discDiv.innerHTML = "Discarded: (" + cardsDiscarded + ")";
+    var br = document.createElement("br");
+    if (discarded.Suit == "hearts") {
+        discardArrH.splice(discarded.CardValue - 1, 0, discarded);
+    }
+    if (discarded.Suit == "diamonds") {
+        discardArrD.splice(discarded.CardValue - 1, 0, discarded);
+    }
+    if (discarded.Suit == "clubs") {
+        discardArrC.splice(discarded.CardValue - 1, 0, discarded);
+    }
+    if (discarded.Suit == "spades") {
+        discardArrS.splice(discarded.CardValue - 1, 0, discarded);
+    }
+    
+    console.log(discardArrH, discardArrD, discardArrC, discardArrS);
+    for (i = 0; i < discardArrH.length; i++) {
+        if (discardArrH[i].CardValue != 0) {
+            console.log("Heart");
+            addToDiscard(discardArrH[i]);
+        }
+    }
+    for (i = 0; i < discardArrD.length; i++) {
+        if (discardArrD[i].CardValue != 0) {
+            console.log("Diamond");
+            addToDiscard(discardArrD[i]);
+        }
+    }
+    for (i = 0; i < discardArrC.length; i++) {
+        if (discardArrC[i].CardValue != 0) {
+            console.log("Club");
+            addToDiscard(discardArrC[i]);
+        }
+    }
+    for (i = 0; i < discardArrS.length; i++) {
+        if (discardArrS[i].CardValue != 0) {
+            console.log("Spade");
+            addToDiscard(discardArrS[i]);
+        }
+    }
+}
+
+function addToDiscard(discardCard) {
+    console.log(discardCard);
+    var card = document.createElement("div");
+    var value = document.createElement("div");
+    var suit = document.createElement("div");
+    card.className = "card";
+    value.className = "value";
+    suit.className = "suit " + discardCard.Suit;
+    value.innerHTML = discardCard.Value;
+    card.appendChild(value);
+    card.appendChild(suit);
+    
+    document.getElementById("discard").appendChild(card); 
+    //document.getElementById("discard").appendChild(br); 
+}
 function restart() {
     var br = document.createElement("br");
     moves = 0;
