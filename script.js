@@ -18,6 +18,7 @@ var discardArrD = new Array(12);
 var discardArrC = new Array(12);
 var discardArrS = new Array(12);
 
+var solvableDeck = [];
 var snd = new Audio("sound.wav"); 
 
 
@@ -53,6 +54,7 @@ function generateDeck()
 			deck.push(card);
 		}
 	}
+    
     console.log(deck);
 }
 
@@ -71,6 +73,9 @@ function shuffle()
 		deck[location1] = deck[location2];
 		deck[location2] = tmp;
 	}
+    deck.forEach(element => {
+       solvableDeck.push(element); 
+    });
 
 	//renderDeck();
 }
@@ -254,10 +259,10 @@ function columnClicked(clickedColumn) {
         var top4 = column4[column4.length - 1].Suit;
         
         if (column1[1].Value == 14 && column2[1].Value == 14 && column3[1].Value == 14 && column4[1].Value == 14) {
-        alert("Congratulations, OMG, WOW, no way you actually completed it!");
+            alert("Congratulations, OMG, WOW, no way you actually completed it!");
         }
-        else if (top1 != top2 && top1 != top3 && top1 != top4 && top2 != top3 && top2 != top4 && top3 != top4 && count == 0) {
-        alert("Oh No! It seems you are stuck :(, YOU LOSE");
+        else if (top1 != top2 && top1 != top3 && top1 != top4 && top2 != top3 && top2 != top4 && top3 != top4 && count == 0 && column1.length > 1 && column2.length > 1 && column3.length > 1 && column4 > 1) {
+            alert("Oh No! It seems you are stuck :(, YOU LOSE");
         }
         
     }
@@ -387,6 +392,7 @@ function restart() {
     moves = 0;
     cardsDiscarded = 0;
     
+    solvableDeck = [];
     document.getElementById("area").innerHTML = "";
     document.getElementById("discard").innerHTML = "Discarded: (0)";
     document.getElementById("discard").appendChild(br); 
