@@ -5,14 +5,19 @@
 </head>
 
 <body>
+    <center>
     <div class="deck">
         <h1>Aces Up - Solitaire</h1>
 
         <input type="button" id="btn" class="btn" onclick="moreCards()" value="GIMME MORE CARDS">
-        <h2 id="rem">Remaining: 13</h2>
+        <input type="button" id="btn" class="btn" onclick="restart()" value="RESTART">
+        <h2 id="rem">Deals Remaining: 13</h2>
+        <h2 id="moves">Moves: 0</h2>
+        
         <div id="area"></div>
-        <span>Discarded:<div id="discard"></div></span>
     </div>
+    <div id="discard"><div id="disc">Discarded: (0)</div><br></div>
+    </center>
 </body>
 <script type="text/javascript" src="script.js"></script>
 </html>

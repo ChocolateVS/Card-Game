@@ -8,10 +8,13 @@ var column1 = new Array();
 var column2 = new Array();
 var column3 = new Array();
 var column4 = new Array();
-
+var moves = 0;
+var cardsDiscarded = 0;
 var count = 13;
 var topCard;
 var blankCard = {Value: "0", Suit: "none", CardValue: "0"};
+
+var discDiv = document.getElementById("disc");
 column1.push(blankCard);
 column2.push(blankCard);
 column3.push(blankCard);
@@ -31,6 +34,8 @@ function generateDeck()
 
 function shuffle()
 {
+    document.getElementById("rem").innerHTML = "Remaining Deals: 13";
+    document.getElementById("moves").innerHTML = "Moves: 0";
 	// for 1000 turns
 	// switch the values of two random cards
 	for (var i = 0; i < 1000; i++)
@@ -151,10 +156,10 @@ function moreCards() {
     renderDeck();
     count--;
     
-    remain.innerHTML = "Remaining: " + count;
+    remain.innerHTML = "Remaining Deals: " + count;
     }
     if (count == 0) {
-        alert("The deck is empty");
+        //alert("The deck is empty");
         document.getElementById("btn").style.display = "none";
     }
 }
@@ -199,6 +204,8 @@ function columnClicked(clickedColumn) {
             updateDiscard(discarded);
             column4.pop();
         }
+        moves++;
+        document.getElementById("moves").innerHTML = "Moves: " + moves;
         renderDeck();
     }
     else if (column1.length == 1 && column1[0].CardValue == 0) {
@@ -220,12 +227,13 @@ function columnClicked(clickedColumn) {
         var top3 = column3[column3.length - 1].Suit;
         var top4 = column4[column4.length - 1].Suit;
         
-        if (top1 != top2 && top1 != top3 && top1 != top4 && top2 != top3 && top2 != top4 && top3 != top4 && count == 0) {
-        alert("Oh No! It seems you are stuck :(, YOU LOSE");
-        }
         if (column1[1].Value == 14 && column2[1].Value == 14 && column3[1].Value == 14 && column4[1].Value == 14) {
         alert("Congratulations, OMG, WOW, no way you actually completed it!");
         }
+        else if (top1 != top2 && top1 != top3 && top1 != top4 && top2 != top3 && top2 != top4 && top3 != top4 && count == 0) {
+        alert("Oh No! It seems you are stuck :(, YOU LOSE");
+        }
+        
     }
 }
 
@@ -261,12 +269,15 @@ function moveCard(startPile, endPile) {
     if (endPile == 4) {
         column4.push(tempCard);
     }
+    moves++;
+    document.getElementById("moves").innerHTML = "Moves: " + moves;
     renderDeck();
 }
 
 function updateDiscard(discarded) {
-    document.getElementById("discard").innerHTML = "";
-    
+    cardsDiscarded++;
+    //document.getElementById("discard").innerHTML = "";
+    var br = document.createElement("br");
     var card = document.createElement("div");
     var value = document.createElement("div");
     var suit = document.createElement("div");
@@ -276,5 +287,36 @@ function updateDiscard(discarded) {
     value.innerHTML = discarded.Value;
     card.appendChild(value);
     card.appendChild(suit);
-    document.getElementById("discard").appendChild(card);   
+    discDiv.innerHTML = "Discarded: (" + cardsDiscarded + ")";
+    document.getElementById("discard").appendChild(card); 
+    //document.getElementById("discard").appendChild(br); 
+    
+}
+
+function restart() {
+    var br = document.createElement("br");
+    moves = 0;
+    cardsDiscarded = 0;
+    
+    document.getElementById("area").innerHTML = "";
+    document.getElementById("discard").innerHTML = "Discarded: (0)";
+    document.getElementById("discard").appendChild(br); 
+    deck = [];
+    topCards = new Array();
+    column1 = new Array();
+    column2 = new Array();
+    column3 = new Array();
+    column4 = new Array();
+
+    count = 13;
+    topCard;
+    blankCard = {Value: "0", Suit: "none", CardValue: "0"};
+    column1.push(blankCard);
+    column2.push(blankCard);
+    column3.push(blankCard);
+    column4.push(blankCard);
+    
+    document.getElementById("btn").style.display = "inline-block";
+    generateDeck();
+    shuffle();
 }

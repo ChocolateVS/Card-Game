@@ -8,8 +8,20 @@
 	border-radius:10px;
 	text-align: center;
 	color:white;
+    
 }
 
+#discard {
+    display: inline-block;
+    width:60%;
+	background:#12bcf4;
+	border:solid 10px black;
+	padding: 10px;
+	border-radius:10px;
+	text-align: center;
+	color:white;
+    display:inline-block;
+}
 button, p, h1, input, div {
     font-family: "Roboto", monospace;
 }
@@ -81,4 +93,9 @@ button, p, h1, input, div {
 button {
 	background: none;
 	border: none;
+}
+
+h2 {
+	margin-top: 10;
+	margin-bottom: 10;
 }
