@@ -324,43 +324,45 @@ function updateDiscard(discarded) {
     console.log("Discarded: ", discarded)
     document.getElementById("discard").innerHTML = "";
     cardsDiscarded++;
-    discDiv.innerHTML = "Discarded: (" + cardsDiscarded + ")";
+    
     var br = document.createElement("br");
     if (discarded.Suit == "hearts") {
-        discardArrH.splice(discarded.CardValue - 1, 0, discarded);
+        discardArrH.splice(discarded.CardValue, 0, discarded);
     }
     if (discarded.Suit == "diamonds") {
-        discardArrD.splice(discarded.CardValue - 1, 0, discarded);
+        discardArrD.splice(discarded.CardValue, 0, discarded);
     }
     if (discarded.Suit == "clubs") {
-        discardArrC.splice(discarded.CardValue - 1, 0, discarded);
+        discardArrC.splice(discarded.CardValue, 0, discarded);
     }
     if (discarded.Suit == "spades") {
-        discardArrS.splice(discarded.CardValue - 1, 0, discarded);
+        discardArrS.splice(discarded.CardValue, 0, discarded);
     }
-    
+    document.getElementById("discard").innerHTML = "Discarded: (" + cardsDiscarded + ")";
+    document.getElementById("discard").appendChild(br); 
+
     console.log(discardArrH, discardArrD, discardArrC, discardArrS);
     for (i = 0; i < discardArrH.length; i++) {
         if (discardArrH[i].CardValue != 0) {
-            console.log("Heart");
+            console.log("Heart", i);
             addToDiscard(discardArrH[i]);
         }
     }
     for (i = 0; i < discardArrD.length; i++) {
         if (discardArrD[i].CardValue != 0) {
-            console.log("Diamond");
+            console.log("Diamond", i);
             addToDiscard(discardArrD[i]);
         }
     }
     for (i = 0; i < discardArrC.length; i++) {
         if (discardArrC[i].CardValue != 0) {
-            console.log("Club");
+            console.log("Club", i);
             addToDiscard(discardArrC[i]);
         }
     }
     for (i = 0; i < discardArrS.length; i++) {
         if (discardArrS[i].CardValue != 0) {
-            console.log("Spade");
+            console.log("Spade", i);
             addToDiscard(discardArrS[i]);
         }
     }
@@ -379,7 +381,6 @@ function addToDiscard(discardCard) {
     card.appendChild(suit);
     
     document.getElementById("discard").appendChild(card); 
-    //document.getElementById("discard").appendChild(br); 
 }
 function restart() {
     var br = document.createElement("br");
