@@ -81,11 +81,19 @@ button, p, h1, input, div {
 }
 
 .column {
+    width: 118px;
 	margin:5px;
 	padding:0;
-	display:inline-block;
+	display:inline-table;
 }
 
+.long_column {
+	width:118px;
+	margin:5px;
+	padding:0;
+	display:inline-table;
+	height:100%;
+}
 .all {
 	display:inline-block;
 }
