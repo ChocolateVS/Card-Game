@@ -24,7 +24,9 @@ var snd = new Audio("sound.wav");
 var checkbox = document.querySelector("input[name=randCheckBox]");
 
 checkbox.addEventListener( 'change', function() {
-    shuffle();
+    if (deck.length == 52) {
+        shuffle();    
+    }
 });
 
 discardArrays();
