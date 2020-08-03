@@ -21,6 +21,11 @@ var discardArrS = new Array(12);
 var solvableDeck = [];
 var snd = new Audio("sound.wav"); 
 
+var checkbox = document.querySelector("input[name=randCheckBox]");
+
+checkbox.addEventListener( 'change', function() {
+    shuffle();
+});
 
 discardArrays();
 function discardArrays () {
