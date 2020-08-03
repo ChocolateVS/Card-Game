@@ -54,29 +54,37 @@ function generateDeck()
 			deck.push(card);
 		}
 	}
-    
-    console.log(deck);
 }
 
 function shuffle()
 {
+    var random = document.getElementById("rand").checked;
     document.getElementById("rem").innerHTML = "Remaining Deals: 13";
     document.getElementById("moves").innerHTML = "Moves: 0";
-	// for 1000 turns
-	// switch the values of two random cards
-	for (var i = 0; i < 1000; i++)
-	{
-		var location1 = Math.floor((Math.random() * deck.length));
-		var location2 = Math.floor((Math.random() * deck.length));
-		var tmp = deck[location1];
+    if (!random) {
+        // for 1000 turns
+        // switch the values of two random cards
+        for (var i = 0; i < 1000; i++)
+        {
+            var location1 = Math.floor((Math.random() * deck.length));
+            var location2 = Math.floor((Math.random() * deck.length));
+            var tmp = deck[location1];
 
-		deck[location1] = deck[location2];
-		deck[location2] = tmp;
-	}
-    deck.forEach(element => {
-       solvableDeck.push(element); 
-    });
-
+            deck[location1] = deck[location2];
+            deck[location2] = tmp;
+        }
+        deck.forEach(element => {
+           solvableDeck.push(element); 
+        });
+    }
+    else if (random) {
+        deck = [];
+        var solvableDecks = [deck1, deck2];
+        var chosen = Math.floor(Math.random() * solvableDecks.length);
+        solvableDecks[chosen].forEach(element => {
+            deck.push(element); 
+        });
+    }
 	//renderDeck();
 }
 
@@ -258,10 +266,10 @@ function columnClicked(clickedColumn) {
         var top3 = column3[column3.length - 1].Suit;
         var top4 = column4[column4.length - 1].Suit;
         
-        if (column1[1].Value == 14 && column2[1].Value == 14 && column3[1].Value == 14 && column4[1].Value == 14) {
+        if (column1[1].CardValue == 14 && column2[1].CardValue == 14 && column3[1].CardValue == 14 && column4[1].CardValue == 14 && column1.length == 2 && column2.length == 2 && column3.length == 2 && column4.length == 2) {
             alert("Congratulations, OMG, WOW, no way you actually completed it!");
         }
-        else if (top1 != top2 && top1 != top3 && top1 != top4 && top2 != top3 && top2 != top4 && top3 != top4 && count == 0 && column1.length > 1 && column2.length > 1 && column3.length > 1 && column4 > 1) {
+        else if (top1 != top2 && top1 != top3 && top1 != top4 && top2 != top3 && top2 != top4 && top3 != top4 && count == 0 && column1.length > 1 && column2.length > 1 && column3.length > 1 && column4.length > 1) {
             alert("Oh No! It seems you are stuck :(, YOU LOSE");
         }
         
@@ -270,7 +278,7 @@ function columnClicked(clickedColumn) {
 
 function moveCard(startPile, endPile) {
     var tempCard;// = topCard[startPile];
-    console.log(startPile, endPile);
+    //console.log(startPile, endPile);
     if (startPile == 1) {
         tempCard = column1[column1.length - 1];
         column1.pop();
@@ -287,7 +295,7 @@ function moveCard(startPile, endPile) {
         tempCard = column4[column4.length - 1];
         column4.pop();
     }
-    console.log(tempCard);
+    //console.log(tempCard);
     if (endPile == 1) {
         column1.push(tempCard);
     }
@@ -326,7 +334,7 @@ function updateDiscard2(discarded) {
 }
 
 function updateDiscard(discarded) {
-    console.log("Discarded: ", discarded)
+    //console.log("Discarded: ", discarded);
     document.getElementById("discard").innerHTML = "";
     cardsDiscarded++;
     
@@ -346,35 +354,35 @@ function updateDiscard(discarded) {
     document.getElementById("discard").innerHTML = "Discarded: (" + cardsDiscarded + ")";
     document.getElementById("discard").appendChild(br); 
 
-    console.log(discardArrH, discardArrD, discardArrC, discardArrS);
+    //console.log(discardArrH, discardArrD, discardArrC, discardArrS);
     for (i = 0; i < discardArrH.length; i++) {
         if (discardArrH[i].CardValue != 0) {
-            console.log("Heart", i);
+            //console.log("Heart", i);
             addToDiscard(discardArrH[i]);
         }
     }
     for (i = 0; i < discardArrD.length; i++) {
         if (discardArrD[i].CardValue != 0) {
-            console.log("Diamond", i);
+            //console.log("Diamond", i);
             addToDiscard(discardArrD[i]);
         }
     }
     for (i = 0; i < discardArrC.length; i++) {
         if (discardArrC[i].CardValue != 0) {
-            console.log("Club", i);
+            //console.log("Club", i);
             addToDiscard(discardArrC[i]);
         }
     }
     for (i = 0; i < discardArrS.length; i++) {
         if (discardArrS[i].CardValue != 0) {
-            console.log("Spade", i);
+            //console.log("Spade", i);
             addToDiscard(discardArrS[i]);
         }
     }
 }
 
 function addToDiscard(discardCard) {
-    console.log(discardCard);
+    //console.log(discardCard);
     var card = document.createElement("div");
     var value = document.createElement("div");
     var suit = document.createElement("div");
