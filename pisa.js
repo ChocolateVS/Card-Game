@@ -10,7 +10,7 @@ var column3 = new Array();
 var moves = 0;
 
 var topCard;
-var blankCard = {Value: "0", Suit: "none", CardValue: "0"};
+var blankCard = {Value: "0", Suit: "none", CardValue: "1000"};
 
 var snd = new Audio("sound.wav"); 
 
