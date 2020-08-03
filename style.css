@@ -112,5 +112,11 @@ a {
 	color:white;
 	text-align:left;
 	font-size:20px;
-	margin:50px;
+	margin:20px;
+    display: block;
+    text-decoration: none;
+}
+
+a:hover {
+    margin-left:25px;
 }
