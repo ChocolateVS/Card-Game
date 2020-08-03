@@ -2,14 +2,13 @@
 var cards = ["2", "3", "4", "5", "6", "7", "8", "9"];
 var cardValue = [2, 3, 4, 5, 6, 7, 8, 9];
 var deck = [];
-var topCards = new Array();
+
 var column1 = new Array();
 var column2 = new Array();
 var column3 = new Array();
 
 var moves = 0;
 
-var topCard;
 var blankCard = {Value: "0", Suit: "none", CardValue: "1000"};
 
 var snd = new Audio("sound.wav"); 
@@ -90,9 +89,13 @@ function drop(dropColumn) {
         if (dropColumn == 2) {
             column3.push(tempCard);
         }
-        
+        moves++;
     }
     startColumn = "";
+    
+    if (column1.length == 9 || column2.length == 9 || column3.length == 9) {
+        alert("YOUUUUUUUU WINNNN!..... :(");
+    }
     renderDeck();
 }
 
@@ -186,84 +189,32 @@ function renderDeck()
     columns.appendChild(drawColumn2);
     columns.appendChild(drawColumn3);
     document.getElementById("area").appendChild(columns);
+    document.getElementById("moves").innerHTML = "Moves: " + moves;
 }
 
 generateDeck();
 shuffle();
 renderDeck();
 
-
-
-/*function moveCard(startPile, endPile) {
-    var tempCard;// = topCard[startPile];
-    //console.log(startPile, endPile);
-    if (startPile == 1) {
-        tempCard = column1[column1.length - 1];
-        column1.pop();
-    }
-    if (startPile == 2) {
-        tempCard = column2[column2.length - 1];
-        column2.pop();
-    }
-    if (startPile == 3) {
-        tempCard = column3[column3.length - 1];
-        column3.pop();
-    }
-    if (startPile == 4) {
-        tempCard = column4[column4.length - 1];
-        column4.pop();
-    }
-    //console.log(tempCard);
-    if (endPile == 1) {
-        column1.push(tempCard);
-    }
-    if (endPile == 2) {
-        column2.push(tempCard);
-    }
-    if (endPile == 3) {
-        column3.push(tempCard);
-    }
-    if (endPile == 4) {
-        column4.push(tempCard);
-    }
-    snd.play();
-    moves++;
-    document.getElementById("moves").innerHTML = "Moves: " + moves;
-    renderDeck();
-}
-
 function restart() {
     var br = document.createElement("br");
     moves = 0;
-    cardsDiscarded = 0;
-    
-    solvableDeck = [];
+
     document.getElementById("area").innerHTML = "";
-    document.getElementById("discard").innerHTML = "Discarded: (0)";
-    document.getElementById("discard").appendChild(br); 
+    document.getElementById("moves").innerHTML = "Moves: 0";
+
     deck = [];
-    topCards = new Array();
     column1 = new Array();
     column2 = new Array();
     column3 = new Array();
-    column4 = new Array();
 
     count = 13;
-    topCard;
-    blankCard = {Value: "0", Suit: "none", CardValue: "0"};
+    blankCard = {Value: "0", Suit: "none", CardValue: "1000"};
     column1.push(blankCard);
     column2.push(blankCard);
     column3.push(blankCard);
-    column4.push(blankCard);
-    
-    discardArrH = new Array(12);
-    discardArrD = new Array(12);
-    discardArrC = new Array(12);
-    discardArrS = new Array(12);
 
-    discardArrays();
-
-    document.getElementById("btn").style.display = "inline-block";
     generateDeck();
     shuffle();
-}*/
+    renderDeck();
+}
