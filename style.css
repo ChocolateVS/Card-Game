@@ -30,12 +30,13 @@ button, p, h1, input, div {
 	padding: 10px;
 	border: solid 1px #808080;
 	background-color: white;
-	display: inline-block;
+	display: inline-table;
+	
 	border-radius: 10px;
 	font-size: 14pt;
 	text-align: center;
 	color:black;
-	margin: 3px;
+	margin-bottom:-90px;
 }
 
 .btn
@@ -68,6 +69,7 @@ button, p, h1, input, div {
 {
 	background-position-x: 90px;
 }
+
 
 .card .clubs
 {

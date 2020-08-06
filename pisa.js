@@ -93,10 +93,12 @@ function drop(dropColumn) {
     }
     startColumn = "";
     
+    snd.play();
+    renderDeck();
     if (column1.length == 9 || column2.length == 9 || column3.length == 9) {
         alert("YOUUUUUUUU WINNNN!..... :(");
     }
-    renderDeck();
+
 }
 
 function cardDrag(startC) {
